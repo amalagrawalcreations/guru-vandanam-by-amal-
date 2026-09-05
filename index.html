@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="hi" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>गुरु वंदनम् | Happy Teachers' Day Celebration</title>
+  <meta name="description" content="गुरु वंदनम् - Saluting the mentors who shape minds, inspire hearts and build the future. Teachers' Day celebration with live tribute music, memories, AI tutor and certificate generator.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e6b75c'><path d='M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z'/></svg>">
+</head>
+<body>
+
+  <!-- Canvas for Flower Shower (पुष्प वर्षा) Confetti -->
+  <canvas id="flower-shower-canvas"></canvas>
+
+  <!-- Navigation Bar -->
+  <header class="navbar-wrapper">
+    <div class="container navbar">
+      <!-- Brand Logo & Left Creator Badge -->
+      <div class="brand-left-group">
+        <a href="#home" class="brand">
+          <div class="brand-emblem">
+            <svg viewBox="0 0 24 24">
+              <!-- Diya & Lotus Open Book Motif -->
+              <path d="M12 2C11.5 3.5 10 5.5 10 7c0 1.1.9 2 2 2s2-.9 2-2c0-1.5-1.5-3.5-2-5zm7 9.5c-1.5 0-2.8.8-3.5 2-1-.7-2.2-1.1-3.5-1.1s-2.5.4-3.5 1.1c-.7-1.2-2-2-3.5-2-2.2 0-4 1.8-4 4 0 4.5 7.5 7.5 11 8.5 3.5-1 11-4 11-8.5 0-2.2-1.8-4-4-4z"/>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">गुरु वंदनम्</span>
+            <span class="brand-subtitle">॥ ज्ञान ही प्रकाश है ॥</span>
+          </div>
+        </a>
+        <div class="nav-author-badge left-author">
+          <span class="author-label">Made by <strong>Amal Agrawal</strong></span>
+        </div>
+      </div>
+
+      <!-- Navigation Menu Links -->
+      <nav>
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#values" class="nav-link">Tribute</a></li>
+          <li><a href="#gallery" class="nav-link">Gallery</a></li>
+          <li><a href="#ai-section" class="nav-link">AI & Education</a></li>
+          <li><a href="#gratitude-wall" class="nav-link">Messages</a></li>
+          <li><a href="#certificate" class="nav-link">Certificate</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions (Music Player, Right Creator Badge & Theme Toggle) -->
+      <div class="nav-actions">
+        <!-- Interactive Audio Player Pill (Guru Vandanam / Teachers' Day Hymn) -->
+        <div class="audio-pill pulse-ready" id="audio-pill" title="Play / Pause Sacred Song: गुरुर्ब्रह्मा गुरुर्विष्णुः (Guru Vandanam)">
+          <div class="audio-visualizer" id="visualizer">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </div>
+          <div class="audio-info">
+            <span class="audio-title" id="audio-track-name">गुरुर्ब्रह्मा गुरुर्विष्णुः 🪷</span>
+            <span class="audio-sub" id="audio-status-sub">🎶 बज रहा है • Guru Vandanam</span>
+          </div>
+          <button class="audio-btn" id="audio-play-btn" aria-label="Play or Pause Music">
+            <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg id="pause-icon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          </button>
+          <button class="audio-track-switch-btn" id="audio-next-btn" title="दूसरा गीत बजाएं / Switch Song (हे शारदे माँ / तू ही राम है)" aria-label="Switch Song">
+            <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+          </button>
+        </div>
+        <audio id="guru-audio" src="audio/guru-vandanam.mp3" loop preload="auto"></audio>
+
+        <!-- Right Side Creator Branding Badge -->
+        <div class="nav-author-badge right-author">
+          <span class="author-label">Made by <strong>Amal Agrawal</strong></span>
+        </div>
+
+        <!-- Theme Mode Toggle -->
+        <button class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle Theme">
+          <svg id="sun-icon" viewBox="0 0 24 24"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0s-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06c.39-.39.39-1.03 0-1.41s-1.03-.39-1.41 0z"/></svg>
+          <svg id="moon-icon" viewBox="0 0 24 24" style="display:none;"><path d="M12.3 2a10 10 0 0 0-.19 14 9.92 9.92 0 0 0 7.89 4 10 10 0 1 1-7.7-18z"/></svg>
+        </button>
+
+        <!-- Mobile Nav Hamburger -->
+        <button class="mobile-menu-btn" id="mobile-menu-toggle" aria-label="Toggle Mobile Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+      <div class="container">
+        <!-- Hero Title & Decorative Badges -->
+        <div class="hero-header">
+          <div class="hero-badge">
+            <svg class="feather-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M21.9 2.1c-.8-.8-2.1-.8-2.9 0l-1.8 1.8 4 4 1.8-1.8c.8-.8.8-2.1-.1-4zM2 20.8l4.4-1.2 9.6-9.6-3.2-3.2-9.6 9.6L2 20.8zm2.4-2.4l1.2-.3 1.5 1.5-.3 1.2-2.4-2.4z"/>
+            </svg>
+            <span class="gold-foil-text" style="font-size:0.9rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase;">॥ सर्वपल्ली राधाकृष्णन जयंती ॥</span>
+          </div>
+
+          <h1 class="hero-title gold-gradient-text">Happy Teachers' Day</h1>
+          <p class="hero-subtitle">Saluting the mentors who shape minds, inspire hearts and build the future.</p>
+
+          <!-- Live Real-Time Countdown Timer -->
+          <div class="countdown-container" id="countdown-bar">
+            <div class="countdown-box">
+              <span class="countdown-num" id="cd-days">05</span>
+              <span class="countdown-label">Days</span>
+            </div>
+            <span class="countdown-sep">:</span>
+            <div class="countdown-box">
+              <span class="countdown-num" id="cd-hours">12</span>
+              <span class="countdown-label">Hours</span>
+            </div>
+            <span class="countdown-sep">:</span>
+            <div class="countdown-box">
+              <span class="countdown-num" id="cd-minutes">45</span>
+              <span class="countdown-label">Minutes</span>
+            </div>
+            <span class="countdown-sep">:</span>
+            <div class="countdown-box">
+              <span class="countdown-num" id="cd-seconds">30</span>
+              <span class="countdown-label">Seconds</span>
+            </div>
+          </div>
+
+          <!-- Hero Action Buttons -->
+          <div class="hero-cta-group">
+            <button class="btn-primary" id="mother-tribute-btn">
+              <span>🧡 धन्यवाद मेरी प्यारी माँ</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <a href="#certificate" class="btn-secondary">
+              <span>📜 शिक्षक सम्मान पत्र बनाएं</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero Stage / Visual with Hologram & Floating Card -->
+        <div class="hero-stage">
+          <img src="assets/hero_teacher_ai.jpg" alt="Indian Teacher guiding students with futuristic AI Assistant" class="hero-main-img" id="hero-img">
+
+          <!-- Glowing Holographic AI Assistant Overlay -->
+          <div class="hero-hologram-left">
+            <div class="hologram-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2zM7.5 13A1.5 1.5 0 0 0 6 14.5 1.5 1.5 0 0 0 7.5 16 1.5 1.5 0 0 0 9 14.5 1.5 1.5 0 0 0 7.5 13zm9 0a1.5 1.5 0 0 0-1.5 1.5 1.5 1.5 0 0 0 1.5 1.5 1.5 1.5 0 0 0 1.5-1.5 1.5 1.5 0 0 0-1.5-1.5z"/></svg>
+            </div>
+            <div class="hologram-text">
+              <h5>AI ASSISTANT</h5>
+              <p>Helping Students 24x7</p>
+            </div>
+          </div>
+
+          <!-- Bottom Right Floating Inspiration Card -->
+          <div class="hero-inspiration-card">
+            <div class="inspiration-header">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+              <span>Our Inspiration</span>
+            </div>
+            <p class="inspiration-text">To every teacher, who teaches with love and leads with example.</p>
+            <a href="#values" class="inspiration-link">
+              <span>Explore Tribute</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: VALUES ("शिक्षक का महत्त्व") & TEACHERS + AI SHOWCASE -->
+    <section class="section" id="values">
+      <div class="container">
+        <!-- Section Heading with Ornate Divider -->
+        <div class="section-header">
+          <div class="ornate-divider">
+            <span class="line"></span>
+            <span class="symbol">❖</span>
+            <span class="line"></span>
+          </div>
+          <h2 class="section-title gold-gradient-text">शिक्षक का महत्त्व</h2>
+          <p class="section-desc">A teacher is a guide, a mentor and a true friend. They plant the seeds of knowledge that grow forever.</p>
+        </div>
+
+        <div class="values-grid">
+          <!-- 5 Golden Pillars Left Column -->
+          <div class="pillars-container">
+            <div class="pillars-row">
+              <!-- 1. ज्ञान -->
+              <div class="pillar-badge" onclick="openPillarModal('ज्ञान', 'Knowledge That Empowers', 'ज्ञान वह अस्त्र है जो मनुष्य को अज्ञानता के अंधकार से निकालकर सत्य के प्रकाश की ओर ले जाता है। गुरु ज्ञान का प्रथम दीप प्रज्वलित करते हैं।')">
+                <div class="pillar-icon">🪷</div>
+                <div class="pillar-title">ज्ञान</div>
+                <div class="pillar-sub">Knowledge<br>That Empowers</div>
+              </div>
+
+              <!-- 2. प्रेरणा -->
+              <div class="pillar-badge" onclick="openPillarModal('प्रेरणा', 'Inspiration That Ignites', 'शिक्षक केवल पाठ नहीं पढ़ाते, बल्कि सोई हुई प्रतिभा को जगाकर नई ऊंचाइयों को छूने की प्रेरणा देते हैं।')">
+                <div class="pillar-icon">💡</div>
+                <div class="pillar-title">प्रेरणा</div>
+                <div class="pillar-sub">Inspiration<br>That Ignites</div>
+              </div>
+
+              <!-- 3. मार्गदर्शन -->
+              <div class="pillar-badge" onclick="openPillarModal('मार्गदर्शन', 'Guidance That Shapes', 'जीवन की कठिन डगर पर जब राह न सूझे, तब शिक्षक का मार्गदर्शन एक ध्रुवतारे की तरह सही दिशा दिखाता है।')">
+                <div class="pillar-icon">🤲</div>
+                <div class="pillar-title">मार्गदर्शन</div>
+                <div class="pillar-sub">Guidance<br>That Shapes</div>
+              </div>
+
+              <!-- 4. संस्कार -->
+              <div class="pillar-badge" onclick="openPillarModal('संस्कार', 'Values For Life', 'शिक्षा के साथ-साथ नैतिक मूल्य, विनम्रता, ईमानदारी और सेवा भाव का निर्माण केवल एक सच्चा गुरु ही कर सकता है।')">
+                <div class="pillar-icon">⭐</div>
+                <div class="pillar-title">संस्कार</div>
+                <div class="pillar-sub">Values<br>For Life</div>
+              </div>
+
+              <!-- 5. सफलता -->
+              <div class="pillar-badge" onclick="openPillarModal('सफलता', 'Success Together', 'एक विद्यार्थी की सफलता में शिक्षक की अनथक मेहनत, धैर्य और निष्ठा का सबसे बड़ा योगदान होता है।')">
+                <div class="pillar-icon">🏆</div>
+                <div class="pillar-title">सफलता</div>
+                <div class="pillar-sub">Success<br>Together</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video / Showcase Card Right Column -->
+          <div class="showcase-card" id="showcase-video-card">
+            <img src="assets/hero_teacher_ai.jpg" alt="Teachers + AI Showcase" class="showcase-thumb">
+            <button class="showcase-play-btn" id="open-video-modal-btn" aria-label="Play Teachers + AI Tribute Video">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <div class="showcase-overlay-info">
+              <h3 class="showcase-heading">Teachers + AI = Better Tomorrow</h3>
+              <p class="showcase-caption">When human wisdom meets artificial intelligence, learning becomes limitless.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: MEMORIES CAROUSEL ("यादें हमारे गुरुओं के साथ") -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-header">
+          <div class="ornate-divider">
+            <span class="line"></span>
+            <span class="symbol">❖</span>
+            <span class="line"></span>
+          </div>
+          <h2 class="section-title gold-gradient-text">यादें हमारे गुरुओं के साथ</h2>
+          <p class="section-desc">Classroom moments of affection, guidance, and lifelong gratitude.</p>
+        </div>
+
+        <div class="carousel-wrapper">
+          <!-- Prev Button -->
+          <button class="carousel-nav-btn carousel-prev" id="carousel-prev" aria-label="Previous Slide">‹</button>
+
+          <!-- Track Container -->
+          <div class="carousel-track-container">
+            <div class="carousel-track" id="carousel-track">
+              <!-- Slide 1 -->
+              <div class="memory-card" onclick="openLightbox('assets/gallery_notebook_guidance.jpg', 'अक्षरों की पहली पहचान', 'पहला अक्षर लिखना सिखाया, हाथ थामकर जीवन की दिशा दिखाई।')">
+                <img src="assets/gallery_notebook_guidance.jpg" alt="Teacher helping student write" class="memory-img">
+                <div class="memory-info">
+                  <div class="memory-title">अक्षरों की पहली पहचान</div>
+                  <div class="memory-caption">हाथ थामकर ज्ञान का पहला बीज बोया।</div>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="memory-card" onclick="openLightbox('assets/gallery_card_tribute.jpg', 'हस्तनिर्मित ग्रीटिंग कार्ड', 'विद्यार्थियों का अपने शिक्षक को प्यार भरा हस्तनिर्मित धन्यवाद संदेश।')">
+                <img src="assets/gallery_card_tribute.jpg" alt="Students gifting card" class="memory-img">
+                <div class="memory-info">
+                  <div class="memory-title">गुरु-शिष्य का स्नेह</div>
+                  <div class="memory-caption">हाथ से बने कार्ड में अनमोल भावनाएं।</div>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="memory-card" onclick="openLightbox('assets/gallery_globe_learning.jpg', 'पूरी दुनिया की सैर', 'ग्लोब के माध्यम से भूगोल, विज्ञान और सपनों की नई उड़ान।')">
+                <img src="assets/gallery_globe_learning.jpg" alt="Teacher explaining globe" class="memory-img">
+                <div class="memory-info">
+                  <div class="memory-title">सपनों की नई उड़ान</div>
+                  <div class="memory-caption">ग्लोब के संग पूरी दुनिया को समझना।</div>
+                </div>
+              </div>
+
+              <!-- Slide 4 -->
+              <div class="memory-card" onclick="openLightbox('assets/hero_teacher_ai.jpg', 'स्मार्ट क्लास और आधुनिक शिक्षा', 'परंपरा और तकनीक का संगम, जहाँ AI और गुरु मिलकर भविष्य संवारते हैं।')">
+                <img src="assets/hero_teacher_ai.jpg" alt="Modern AI Classroom" class="memory-img">
+                <div class="memory-info">
+                  <div class="memory-title">आधुनिक भविष्य की कक्षा</div>
+                  <div class="memory-caption">AI और मानवीय मार्गदर्शन का सुंदर संगम।</div>
+                </div>
+              </div>
+
+              <!-- Slide 5 -->
+              <div class="memory-card" onclick="openLightbox('assets/gallery_card_tribute.jpg', 'सदा आभारी मन', 'धन्यवाद शिक्षक — दिल से निकली एक सच्ची और मासूम मुस्कान।')">
+                <img src="assets/gallery_card_tribute.jpg" alt="Heartfelt gratitude" class="memory-img">
+                <div class="memory-info">
+                  <div class="memory-title">कृतज्ञता का उपहार</div>
+                  <div class="memory-caption">हर शिक्षक के प्रति सच्ची श्रद्धा व वंदन।</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Next Button -->
+          <button class="carousel-nav-btn carousel-next" id="carousel-next" aria-label="Next Slide">›</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: AI & EDUCATION ("गुरु वाणी & AI TUTOR") -->
+    <section class="section ai-section" id="ai-section">
+      <div class="container">
+        <div class="ai-container">
+          <!-- Left Info & Quick Prompts -->
+          <div class="ai-info-box">
+            <div class="ai-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+              <span>AI & Education 24x7</span>
+            </div>
+            <h2 class="section-title gold-gradient-text" style="text-align:left;">गुरु वाणी AI सहायक</h2>
+            <p style="color:var(--text-secondary); font-size:0.95rem;">
+              प्राचीन भारतीय गुरु परंपरा और आधुनिक आर्टिफिशियल इंटेलिजेंस का तालमेल। तुरंत भाषण (Speech), संस्कृत श्लोक, कविताएँ और शिक्षक दिवस के विशेष संदेश तैयार करें।
+            </p>
+
+            <div style="margin-top:0.5rem;">
+              <span style="font-size:0.8rem; color:var(--gold-400); font-weight:600; display:block; margin-bottom:0.6rem;">त्वरित सुझाव (Click to generate):</span>
+              <div class="ai-quick-prompts">
+                <button class="prompt-chip" onclick="askAi('speech')">🎙️ शिक्षक दिवस पर भाषण (Speech)</button>
+                <button class="prompt-chip" onclick="askAi('shloka')">🕉️ संस्कृत श्लोक व अर्थ</button>
+                <button class="prompt-chip" onclick="askAi('poem')">✍️ दिल को छूने वाली कविता</button>
+                <button class="prompt-chip" onclick="askAi('radhakrishnan')">📖 डॉ. राधाकृष्णन का जीवन परिचय</button>
+              </div>
+            </div>
+
+            <!-- Voice Reciter Button -->
+            <div style="margin-top:0.5rem;">
+              <button class="btn-secondary" id="speak-ai-btn" style="padding: 0.5rem 1.2rem; font-size:0.85rem;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                <span>आवाज़ में सुनें (Listen Speech)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Right Interactive Chat Window -->
+          <div class="ai-chat-window">
+            <div class="chat-header">
+              <div class="chat-bot-id">
+                <div class="bot-avatar">🤖</div>
+                <div>
+                  <div class="bot-name">गुरु वाणी AI Tutor</div>
+                  <div class="bot-status">● Online & Ready to Inspire</div>
+                </div>
+              </div>
+              <button class="btn-secondary" onclick="clearAiChat()" style="padding:0.25rem 0.6rem; font-size:0.75rem;">Clear</button>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+              <div class="message-bubble message-bot">
+                नमस्ते! मैं आपका <strong>गुरु वाणी AI सहायक</strong> हूँ। शिक्षक दिवस पर भाषण, श्लोक, बधाई संदेश या प्रेरणादायक कहानियों के लिए मुझसे कुछ भी पूछिए या ऊपर दिए गए सुझावों पर क्लिक कीजिए!
+              </div>
+            </div>
+
+            <form class="chat-input-bar" id="chat-form" onsubmit="handleChatSubmit(event)">
+              <input type="text" id="chat-user-input" class="chat-input" placeholder="यहाँ प्रश्न लिखें (उदा: शिक्षक के लिए आभार पत्र)..." autocomplete="off">
+              <button type="submit" class="chat-send-btn" aria-label="Send">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: WALL OF GRATITUDE ("गुरु दक्षिणा संदेश पटल") -->
+    <section class="section" id="gratitude-wall">
+      <div class="container">
+        <div class="section-header">
+          <div class="ornate-divider">
+            <span class="line"></span>
+            <span class="symbol">❖</span>
+            <span class="line"></span>
+          </div>
+          <h2 class="section-title gold-gradient-text">गुरु दक्षिणा संदेश पटल</h2>
+          <p class="section-desc">अपने शिक्षक के लिए सम्मान और आभार का संदेश लिखें। हर संदेश पर होगी पुष्प वर्षा!</p>
+        </div>
+
+        <!-- Submission Form -->
+        <div class="wall-form-container">
+          <form class="wall-form" id="gratitude-form" onsubmit="submitGratitudeMessage(event)">
+            <div class="form-group-row">
+              <input type="text" id="form-teacher" class="form-input" placeholder="शिक्षक का नाम (जैसे: श्री शर्मा जी / माँ)" required>
+              <input type="text" id="form-student" class="form-input" placeholder="आपका नाम (शिष्य / विद्यार्थी)" required>
+            </div>
+            
+            <textarea id="form-message" class="form-textarea" rows="3" placeholder="अपने शिक्षक के प्रति दिल से निकला संदेश लिखें..." required></textarea>
+
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+              <div class="tag-selector">
+                <span style="font-size:0.75rem; color:var(--text-muted); align-self:center;">टैग चुनें:</span>
+                <button type="button" class="tag-btn active" onclick="selectTag(this, '#BestTeacher')">#BestTeacher</button>
+                <button type="button" class="tag-btn" onclick="selectTag(this, '#MaaFirstGuru')">#MaaFirstGuru</button>
+                <button type="button" class="tag-btn" onclick="selectTag(this, '#Inspiring')">#Inspiring</button>
+                <button type="button" class="tag-btn" onclick="selectTag(this, '#LifeGuide')">#LifeGuide</button>
+                <button type="button" class="tag-btn" onclick="selectTag(this, '#AIGuru')">#AIGuru</button>
+              </div>
+
+              <button type="submit" class="btn-primary" style="padding:0.6rem 1.4rem;">
+                <span>संदेश भेजें & पुष्प वर्षा 🌸</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Messages Masonry Wall (Mother Tribute & AI Mentor Tribute) -->
+        <div class="messages-wall" id="messages-wall">
+          <!-- 1. Mother - First & Eternal Guru -->
+          <div class="message-note-card mother-tribute-card">
+            <div class="message-meta">
+              <span class="teacher-tag">To: मेरी प्यारी माँ</span>
+              <span class="message-tag-badge">#MaaFirstGuru</span>
+            </div>
+            <p class="message-body">"माँ, तुमने मुझे बोलना सिखाया, सही और गलत में फर्क बताया। तुम ही मेरी सबसे पहली और सबसे महान गुरु हो।"</p>
+            <div class="message-footer">
+              <span class="student-author">— अमल और मीनल</span>
+              <button class="like-btn" onclick="toggleLike(this, 34)">❤️ <span class="like-count">34</span></button>
+            </div>
+          </div>
+
+          <!-- 2. AI (Artificial Intelligence) - Modern Digital Guru & Mentor -->
+          <div class="message-note-card ai-tribute-card">
+            <div class="message-meta">
+              <span class="teacher-tag ai-tag">To: AI (आर्टिफिशियल इंटेलिजेंस) मेंटर</span>
+              <span class="message-tag-badge ai-badge">#AIGuru #FutureMentor</span>
+            </div>
+            <p class="message-body">"24x7 बिना थके कोडिंग सिखाने, हर कठिन सवाल का सरल हल देने और असीम ज्ञान से रूबरू कराने के लिए धन्यवाद AI! तकनीक और शिक्षा का सबसे अद्भुत डिजिटल गुरु।"</p>
+            <div class="message-footer">
+              <span class="student-author ai-author">— अमल अग्रवाल (Amal Agrawal)</span>
+              <button class="like-btn" onclick="toggleLike(this, 56)">❤️ <span class="like-count">56</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: CERTIFICATE GENERATOR ("शिक्षक सम्मान पत्र") -->
+    <section class="section" id="certificate">
+      <div class="container">
+        <div class="section-header">
+          <div class="ornate-divider">
+            <span class="line"></span>
+            <span class="symbol">❖</span>
+            <span class="line"></span>
+          </div>
+          <h2 class="section-title gold-gradient-text">शिक्षक सम्मान पत्र जनरेटर</h2>
+          <p class="section-desc">अपने आदरणीय शिक्षक के नाम का शाही डिजिटल सम्मान पत्र बनाएं और उन्हें उपहार स्वरूप भेंट करें।</p>
+        </div>
+
+        <div class="cert-container">
+          <!-- Form Left -->
+          <div class="cert-form-box">
+            <h3 style="color:var(--gold-200); margin-bottom:1.25rem; font-family:var(--font-hindi); font-size:1.25rem;">सम्मान पत्र की जानकारी भरें</h3>
+            
+            <div style="display:flex; flex-direction:column; gap:1rem;">
+              <div>
+                <label style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:0.35rem;">सम्मानित शिक्षक का नाम:</label>
+                <input type="text" id="cert-input-teacher" class="form-input" value="आदरणीय गुरुवर" oninput="updateCertPreview()">
+              </div>
+
+              <div>
+                <label style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:0.35rem;">सम्मान उपाधि:</label>
+                <select id="cert-input-title" class="form-input" onchange="updateCertPreview()">
+                  <option value="श्रेष्ठ गुरु सम्मान">श्रेष्ठ गुरु सम्मान (Best Teacher Award)</option>
+                  <option value="मार्गदर्शक रत्न">मार्गदर्शक रत्न (Guiding Star)</option>
+                  <option value="मेरी प्रथम गुरु (माँ)">मेरी प्रथम गुरु - माँ (Mother Special)</option>
+                  <option value="ज्ञान दीपक सम्मान">ज्ञान दीपक सम्मान (Light of Wisdom)</option>
+                </select>
+              </div>
+
+              <div>
+                <label style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:0.35rem;">प्रस्तुतकर्ता (आपका नाम):</label>
+                <input type="text" id="cert-input-student" class="form-input" value="आपका आज्ञाकारी शिष्य" oninput="updateCertPreview()">
+              </div>
+
+              <div>
+                <label style="font-size:0.8rem; color:var(--text-muted); display:block; margin-bottom:0.35rem;">आभार संदेश:</label>
+                <textarea id="cert-input-msg" class="form-textarea" rows="3" oninput="updateCertPreview()">आपके अमूल्य मार्गदर्शन, असीम धैर्य और स्नेह के लिए हम सदैव आपके ऋणी रहेंगे। आप हमारे जीवन के सच्चे प्रकाश स्तम्भ हैं।</textarea>
+              </div>
+
+              <div style="display:flex; gap:0.75rem; margin-top:0.5rem;">
+                <button type="button" class="btn-primary" onclick="printCertificate()" style="flex:1;">
+                  <span>🖨️ प्रिंट / PDF सेव करें</span>
+                </button>
+                <button type="button" class="btn-secondary" onclick="triggerMarigoldShower()" style="flex:1;">
+                  <span>🌸 पुष्प अर्पण</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Preview Frame Right -->
+          <div class="cert-preview-frame" id="printable-certificate">
+            <div class="cert-header-title" id="cert-disp-title">श्रेष्ठ गुरु सम्मान</div>
+            <div class="cert-award-text">॥ शिक्षक दिवस के पावन अवसर पर समर्पित ॥</div>
+            <div class="ornate-divider" style="margin:0.5rem auto 1rem;">
+              <span class="line" style="background:#b87b22; width:40px;"></span>
+              <span class="symbol" style="color:#b87b22;">❖</span>
+              <span class="line" style="background:#b87b22; width:40px;"></span>
+            </div>
+
+            <div style="font-size:0.85rem; color:#6b4e2e; margin-bottom:0.3rem;">यह सम्मान पत्र सादर समर्पित किया जाता है:</div>
+            <div class="cert-teacher-name" id="cert-disp-teacher">आदरणीय गुरुवर</div>
+
+            <div class="cert-message-body" id="cert-disp-msg">
+              "आपके अमूल्य मार्गदर्शन, असीम धैर्य और स्नेह के लिए हम सदैव आपके ऋणी रहेंगे। आप हमारे जीवन के सच्चे प्रकाश स्तम्भ हैं।"
+            </div>
+
+            <div class="cert-footer-row">
+              <div class="cert-sign-box">
+                <div style="font-size:0.85rem; font-weight:700; color:#1a110a;" id="cert-disp-date">5 सितंबर, 2026</div>
+                <div style="font-size:0.75rem; color:#856e5a;">तिथि (शिक्षक दिवस)</div>
+              </div>
+
+              <div class="cert-seal">
+                <span>गुरु<br>वंदनम्</span>
+              </div>
+
+              <div class="cert-sign-box">
+                <div style="font-size:0.95rem; font-weight:700; color:#1a110a;" id="cert-disp-student">आपका आज्ञाकारी शिष्य</div>
+                <div style="font-size:0.75rem; color:#856e5a;">सादर कृतज्ञता सहित</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="shloka-banner">
+        <div class="shloka-sanskrit">
+          गुरुर्ब्रह्मा गुरुर्विष्णुः गुरुर्देवो महेश्वरः ।<br>
+          गुरुः साक्षात् परं ब्रह्म तस्मै श्रीगुरवे नमः ॥
+        </div>
+        <div class="shloka-meaning">
+          "गुरु ही ब्रह्मा हैं, गुरु ही विष्णु हैं, और गुरु ही भगवान शिव हैं। गुरु ही साक्षात परम ब्रह्म हैं, ऐसे श्री गुरुदेव को मेरा कोटि-कोटि प्रणाम।"
+        </div>
+      </div>
+
+      <!-- Prominent Footer Creator Showcase (Amal Agrawal) -->
+      <div class="footer-creator-box">
+        <div class="creator-ornament">❖ ❖ ❖</div>
+        <div class="creator-tagline">Special Teachers' Day Digital Tribute & AI Innovation</div>
+        <h2 class="creator-heading">
+          Made with Devotion & Reverence by <span class="gold-gradient-text creator-highlight">Amal Agrawal</span>
+        </h2>
+        <p class="creator-subtext">
+          "समस्त शिक्षकों के पावन चरणों में एवं आधुनिक AI शिक्षा क्रांति को सादर समर्पित — अमल अग्रवाल"
+        </p>
+        <div class="creator-badges-cluster">
+          <span class="creator-chip">🌟 Created by Amal Agrawal</span>
+          <span class="creator-chip">🪷 Dedicated to First Guru: Mother</span>
+          <span class="creator-chip">🤖 AI & Future of Learning</span>
+          <span class="creator-chip">🎉 Teachers' Day 2026</span>
+        </div>
+      </div>
+
+      <div class="footer-copy">
+        <p>© 2026 गुरु वंदनम् (Guru Vandanam) — Crafted & Designed with ❤️ by <strong>Amal Agrawal</strong>. All Rights Reserved.</p>
+        <p style="margin-top:0.4rem; font-size:0.75rem; color:var(--gold-400);">॥ विद्या ददाति विनयं विनयाद् याति पात्रताम् ॥</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS
+       ========================================================================== -->
+
+  <!-- 1. Mother's Tribute Modal ("धन्यवाद मेरी प्यारी माँ") -->
+  <div class="modal-backdrop" id="mother-modal">
+    <div class="modal-content" style="padding:2.5rem; text-align:center;">
+      <button class="modal-close-btn" onclick="closeModal('mother-modal')">✕</button>
+      <div style="font-size:2.5rem; margin-bottom:0.5rem;">🧡</div>
+      <h3 class="gold-gradient-text" style="font-family:var(--font-hindi); font-size:1.8rem; margin-bottom:0.5rem;">धन्यवाद मेरी प्यारी माँ!</h3>
+      <p style="color:var(--gold-300); font-size:0.9rem; margin-bottom:1.5rem;">"संसार की सबसे पहली और सबसे निस्वार्थ गुरु — माँ"</p>
+
+      <div style="background:rgba(18, 12, 8, 0.8); border:1px solid var(--border-gold); border-radius:var(--radius-md); padding:1.5rem; text-align:left; line-height:1.8; font-family:var(--font-hindi); margin-bottom:1.5rem;">
+        <p>माँ, तुमने मुझे उंगली पकड़कर चलना सिखाया,<br>
+        मेरे पहले शब्द, मेरी पहली मुस्कान, सब तुम्हारी देन हैं।<br>
+        जब पूरी दुनिया ने मुझे परखा, तुमने मुझे समझा।<br>
+        इस शिक्षक दिवस पर, मेरे जीवन की पहली और सबसे प्यारी गुरु को मेरा शत-शत नमन!</p>
+      </div>
+
+      <div style="display:flex; justify-content:center; gap:1rem;">
+        <button class="btn-primary" onclick="triggerMarigoldShower(); closeModal('mother-modal');">
+          <span>🌸 माँ के चरणों में पुष्प वर्षा</span>
+        </button>
+        <button class="btn-secondary" onclick="shareMotherTribute()">
+          <span>📲 शेयर करें (WhatsApp)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Video Modal ("Teachers + AI Showcase") -->
+  <div class="modal-backdrop" id="video-modal">
+    <div class="modal-content" style="max-width:760px; padding:1.5rem;">
+      <button class="modal-close-btn" onclick="closeModal('video-modal')">✕</button>
+      <h3 class="gold-gradient-text" style="font-family:var(--font-serif); font-size:1.35rem; margin-bottom:0.5rem;">Teachers + AI: The Future of Education</h3>
+      
+      <!-- Interactive Cinematic Canvas / Video Simulation -->
+      <div style="position:relative; border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--border-gold); background:#000; height:380px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:2rem;" id="video-stage">
+        <canvas id="video-canvas" width="700" height="380" style="position:absolute; inset:0; width:100%; height:100%;"></canvas>
+        <div style="position:relative; z-index:2; max-width:540px; background:rgba(10, 7, 5, 0.85); padding:1.5rem 2rem; border-radius:var(--radius-md); border:1px solid var(--border-cyan);">
+          <div style="color:var(--ai-cyan); font-size:0.8rem; font-weight:700; letter-spacing:0.1em; margin-bottom:0.5rem;">॥ सह नाववतु । सह नौ भुनक्तु ॥</div>
+          <h4 style="color:#fff; font-size:1.2rem; margin-bottom:0.5rem;">Empowering Mentors, Unlocking Every Mind</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">
+            "Artificial Intelligence provides 24x7 personalized practice, instant doubt-solving, and interactive simulations. But empathy, moral values, and human inspiration come solely from our Gurus. Together, they create a limitless tomorrow."
+          </p>
+          <div style="margin-top:1rem; display:flex; justify-content:center; gap:0.75rem;">
+            <button class="btn-primary" onclick="toggleAudio()" style="padding:0.4rem 1rem; font-size:0.8rem;">
+              <span>🎵 गुरु वंदना संगीत बजाएं</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Lightbox Modal for Gallery Photos -->
+  <div class="modal-backdrop" id="lightbox-modal">
+    <div class="modal-content" style="max-width:800px; padding:1.25rem; text-align:center;">
+      <button class="modal-close-btn" onclick="closeModal('lightbox-modal')">✕</button>
+      <img src="" id="lightbox-img" alt="Gallery preview" style="max-height:480px; width:auto; max-width:100%; border-radius:var(--radius-md); object-fit:contain; border:1px solid var(--border-gold);">
+      <h3 id="lightbox-title" style="color:var(--gold-200); font-family:var(--font-hindi); margin-top:1rem; font-size:1.2rem;"></h3>
+      <p id="lightbox-caption" style="color:var(--text-secondary); font-size:0.85rem; margin-top:0.25rem;"></p>
+    </div>
+  </div>
+
+  <!-- 4. Pillar Detail Modal -->
+  <div class="modal-backdrop" id="pillar-modal">
+    <div class="modal-content" style="padding:2rem; text-align:center; max-width:500px;">
+      <button class="modal-close-btn" onclick="closeModal('pillar-modal')">✕</button>
+      <div id="pillar-modal-icon" style="font-size:3rem; margin-bottom:0.5rem;">🪷</div>
+      <h3 id="pillar-modal-title" class="gold-gradient-text" style="font-family:var(--font-hindi); font-size:1.6rem; margin-bottom:0.25rem;"></h3>
+      <div id="pillar-modal-sub" style="font-size:0.8rem; color:var(--gold-400); margin-bottom:1rem;"></div>
+      <p id="pillar-modal-text" style="color:var(--text-secondary); font-size:0.95rem; line-height:1.6; font-family:var(--font-hindi);"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
